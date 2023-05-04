@@ -10,10 +10,10 @@ public class Radio {
 
     public void setCurrentRadioStation(int newCurrentRadioStation) { // выставляем номер станции
         if (newCurrentRadioStation < 0) {
-            newCurrentRadioStation = 9;
+            return;
         }
         if (newCurrentRadioStation > 9) {
-            newCurrentRadioStation = 0;
+            return;
         }
         currentRadioStation = newCurrentRadioStation;
     }
@@ -34,38 +34,34 @@ public class Radio {
 
 
     public void nextRadioStation() { // переключаем на 1 станцию вперед
-        if (currentRadioStation < 9) {
-            currentRadioStation = currentRadioStation + 1;
+        if (currentRadioStation == 9) {
+            setCurrentRadioStation(0);
         } else {
-            currentRadioStation = 0;
+            currentRadioStation++;
         }
     }
 
     public void previousRadioStation() { // переключаем на 1 станцию назад
-        if (currentRadioStation < 9) {
-            currentRadioStation = currentRadioStation - 1;
+        if (currentRadioStation == 0) {
+            setCurrentRadioStation(9);
         } else {
-            currentRadioStation = 0;
-        }
-        if (currentRadioStation < 0) {
-            currentRadioStation = 9;
+            currentRadioStation--;
         }
     }
 
-    public void increaseVolume() { // увеличение звука на 1
-        if (currentVolume < 100) {
-            currentVolume = currentVolume + 1;
+    public void increaseVolume() {
+        if (currentVolume >= 100) {
+            setCurrentVolume(100);
+        } else {
+            currentVolume++;
         }
     }
 
-    public void lowerVolume() { // уменьшение звука на 1
-        if (currentVolume < 100) {
-            currentVolume = currentVolume - 1;
-        }
-        if (currentVolume < 0) {
-            currentVolume = 0;
+    public void lowerVolume() {
+        if (currentVolume <= 0) {
+            setCurrentVolume(0);
+        } else {
+            currentVolume--;
         }
     }
 }
-
-
