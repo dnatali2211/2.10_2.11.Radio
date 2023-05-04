@@ -1,7 +1,8 @@
 package ru.netology.radio;
 
 public class Radio {
-    public int currentRadioStation; //значение 0
+    private int currentRadioStation; //значение 0
+    private int currentVolume; //значение 0
 
     public int getCurrentRadioStation() {
         return currentRadioStation;
@@ -16,6 +17,21 @@ public class Radio {
         }
         currentRadioStation = newCurrentRadioStation;
     }
+
+    public int getCurrentVolume() {
+        return currentVolume;
+    }
+
+    public void setCurrentVolume(int newCurrentVolume) { // выставляем уровень громкости
+        if (newCurrentVolume < 0) {
+            return;
+        }
+        if (newCurrentVolume > 100) {
+            newCurrentVolume = 100;
+        }
+        currentVolume = newCurrentVolume;
+    }
+
 
     public void nextRadioStation() { // переключаем на 1 станцию вперед
         if (currentRadioStation < 9) {
@@ -34,23 +50,6 @@ public class Radio {
         if (currentRadioStation < 0) {
             currentRadioStation = 9;
         }
-    }
-
-
-    public int currentVolume; //значение 0
-
-    public int getCurrentVolume() {
-        return currentVolume;
-    }
-
-    public void setCurrentVolume(int newCurrentVolume) { // выставляем уровень громкости
-        if (newCurrentVolume < 0) {
-            return;
-        }
-        if (newCurrentVolume > 100) {
-            newCurrentVolume = 100;
-        }
-        currentVolume = newCurrentVolume;
     }
 
     public void increaseVolume() { // увеличение звука на 1

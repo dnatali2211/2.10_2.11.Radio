@@ -47,6 +47,7 @@ public class RadioTest {
     @Test
     public void switchNextRadioStation() { // переключаем на 1 станцию вперед
         Radio radio = new Radio();
+
         radio.setCurrentRadioStation(7);
 
         radio.nextRadioStation();
@@ -60,6 +61,7 @@ public class RadioTest {
     @Test
     public void switchNextRadioStationIfAboveMax() { // переключаем на 1 станцию вперед, находясь на последней станции
         Radio radio = new Radio();
+
         radio.setCurrentRadioStation(9);
 
         radio.nextRadioStation();
@@ -73,6 +75,7 @@ public class RadioTest {
     @Test
     public void switchPreviousRadioStation() { // переключаем на 1 станцию назад
         Radio radio = new Radio();
+
         radio.setCurrentRadioStation(5);
 
         radio.previousRadioStation();
@@ -86,6 +89,7 @@ public class RadioTest {
     @Test
     public void switchPreviousRadioStationIfBelowMin() { // переключаем на 1 станцию назад, находясь на первой станции
         Radio radio = new Radio();
+
         radio.setCurrentRadioStation(0);
 
         radio.previousRadioStation();
@@ -99,6 +103,7 @@ public class RadioTest {
     @Test
     public void switchPreviousRadioStationIfAboveLastStation() { // отрицательное значение
         Radio radio = new Radio();
+
         radio.setCurrentRadioStation(-1);
 
         radio.previousRadioStation();
@@ -136,6 +141,7 @@ public class RadioTest {
     @Test
     public void shouldIncreaseVolume() { // увеличиваем громкость на 1
         Radio radio = new Radio();
+
         radio.setCurrentVolume(89);
 
         radio.increaseVolume();
@@ -149,6 +155,7 @@ public class RadioTest {
     @Test
     public void shouldNotIncreaseVolumeIfAboveMax() { // увеличиваем громкость на 1 при достижении максимальной громкости
         Radio radio = new Radio();
+
         radio.setCurrentVolume(101);
 
         radio.increaseVolume();
@@ -162,6 +169,7 @@ public class RadioTest {
     @Test
     public void shouldLowerVolume() { // уменьшаем громкость на 1
         Radio radio = new Radio();
+
         radio.setCurrentVolume(53);
 
         radio.lowerVolume();
@@ -175,6 +183,7 @@ public class RadioTest {
     @Test
     public void shouldNotLowerVolume() { // уменьшаем громкость на 1 при достижении минимальной громкости
         Radio radio = new Radio();
+
         radio.setCurrentVolume(0);
 
         radio.lowerVolume();
@@ -188,6 +197,7 @@ public class RadioTest {
     @Test
     public void shouldNotLowerVolumeIfBelowZero() { // отрицательное значение
         Radio radio = new Radio();
+
         radio.setCurrentVolume(-1);
 
         radio.lowerVolume();
@@ -201,6 +211,7 @@ public class RadioTest {
     @Test
     public void shouldNotLowerVolumeIfAboveMaxLoud() { // значение больше максимального
         Radio radio = new Radio();
+
         radio.setCurrentVolume(102);
 
         radio.lowerVolume();
