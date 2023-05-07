@@ -2,22 +2,23 @@ package ru.netology.radio;
 
 public class Radio {
     private int currentRadioStation; //значение 0
-
     private int totalRadioStations = 10;
-    private int firstRadioStation = 0;
+    private int firstRadioStation; // значение 0
     private int lastRadioStation = 9;
     private int currentVolume; //значение 0
-    private int minVolume = 0;
+    private int minVolume; // значение 0
     private int maxVolume = 100;
 
+    public Radio() {
+        this.totalRadioStations = getTotalRadioStations();
+        this.lastRadioStation = getLastRadioStation();
+    }
 
     public Radio(int totalRadioStations) {
         this.totalRadioStations = totalRadioStations;
-        lastRadioStation = totalRadioStations - 1;
+        this.lastRadioStation = this.totalRadioStations - 1;
     }
 
-    public Radio() {
-    }
 
     public int getCurrentRadioStation() {
         return currentRadioStation;

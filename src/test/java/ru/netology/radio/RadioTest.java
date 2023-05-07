@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class RadioTest {
     Radio radio = new Radio(89);
+    Radio radio10 = new Radio();
 
     @Test
     public void testTotalRadioStations() {
@@ -167,4 +168,99 @@ public class RadioTest {
 
         Assertions.assertEquals(expected, actual);
     }
+
+
+
+    @Test
+    public void testTotalRadioStations10() {
+
+        Assertions.assertEquals(10, radio10.getTotalRadioStations());
+    }
+
+    @Test
+    public void testLastRadioStation10() {
+
+        Assertions.assertEquals(9, radio10.getLastRadioStation());
+    }
+
+    @Test
+    public void shouldSetRadioStation10() { // установка станции путем нажатия кнопки
+        radio10.setCurrentRadioStation(6);
+
+        int expected = 6;
+        int actual = radio10.getCurrentRadioStation();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldNotSetRadioStationAboveLastStation10() { // установка станции выше последней
+        radio10.setCurrentRadioStation(10);
+
+        int expected = 0;
+        int actual = radio10.getCurrentRadioStation();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void switchNextRadioStation10() { // переключаем на 1 станцию вперед
+        radio10.setCurrentRadioStation(7);
+
+        radio10.nextRadioStation();
+
+        int expected = 8;
+        int actual = radio10.getCurrentRadioStation();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void switchNextRadioStationIfAboveMax10() { // переключаем на 1 станцию вперед, находясь на последней станции
+        radio10.setCurrentRadioStation(9);
+
+        radio10.nextRadioStation();
+
+        int expected = 0;
+        int actual = radio10.getCurrentRadioStation();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void switchPreviousRadioStation10() { // переключаем на 1 станцию назад
+        radio10.setCurrentRadioStation(5);
+
+        radio10.previousRadioStation();
+
+        int expected = 4;
+        int actual = radio10.getCurrentRadioStation();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void switchPreviousRadioStationIfBelowMin10() { // переключаем на 1 станцию назад, находясь на первой станции
+        radio10.setCurrentRadioStation(0);
+
+        radio10.previousRadioStation();
+
+        int expected = 9;
+        int actual = radio10.getCurrentRadioStation();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void switchPreviousRadioStationIfBelowZero10() { // отрицательное значение
+        radio10.setCurrentRadioStation(-1);
+
+        radio10.previousRadioStation();
+
+        int expected = 9;
+        int actual = radio10.getCurrentRadioStation();
+
+        Assertions.assertEquals(expected, actual);
+    }
 }
+
