@@ -10,8 +10,6 @@ public class Radio {
     private int maxVolume = 100;
 
     public Radio() {
-        this.totalRadioStations = getTotalRadioStations();
-        this.lastRadioStation = getLastRadioStation();
     }
 
     public Radio(int totalRadioStations) {
