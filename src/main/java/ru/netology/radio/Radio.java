@@ -1,67 +1,74 @@
 package ru.netology.radio;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
+
 public class Radio {
-    private int currentRadioStation; //значение 0
-    private int currentVolume; //значение 0
 
-    public int getCurrentRadioStation() {
-        return currentRadioStation;
+    private int currentRadioStation;
+    private int totalRadioStations = 10;
+    private int firstRadioStation;
+    private int lastRadioStation = 9;
+    private int currentVolume;
+    private int minVolume;
+    private int maxVolume = 100;
+
+    public void setCurrentRadioStation(int newCurrentRadioStation) {
+        if (newCurrentRadioStation >= this.getFirstRadioStation()) {
+            if (newCurrentRadioStation <= this.getLastRadioStation()) {
+                this.currentRadioStation = newCurrentRadioStation;
+            }
+        }
     }
 
-    public void setCurrentRadioStation(int newCurrentRadioStation) { // выставляем номер станции
-        if (newCurrentRadioStation < 0) {
-            return;
+    public void setCurrentVolume(int newCurrentVolume) {
+        if (newCurrentVolume >= this.minVolume) {
+            if (newCurrentVolume > this.maxVolume) {
+                newCurrentVolume = this.maxVolume;
+            }
+            this.currentVolume = newCurrentVolume;
         }
-        if (newCurrentRadioStation > 9) {
-            return;
-        }
-        currentRadioStation = newCurrentRadioStation;
     }
 
-    public int getCurrentVolume() {
-        return currentVolume;
-    }
-
-    public void setCurrentVolume(int newCurrentVolume) { // выставляем уровень громкости
-        if (newCurrentVolume < 0) {
-            return;
-        }
-        if (newCurrentVolume > 100) {
-            newCurrentVolume = 100;
-        }
-        currentVolume = newCurrentVolume;
-    }
-
-
-    public void nextRadioStation() { // переключаем на 1 станцию вперед
-        if (currentRadioStation == 9) {
-            setCurrentRadioStation(0);
+    public void nextRadioStation() {
+        if (this.currentRadioStation == this.getLastRadioStation()) {
+            this.setCurrentRadioStation(this.getFirstRadioStation());
         } else {
-            currentRadioStation++;
+            ++this.currentRadioStation;
         }
     }
 
-    public void previousRadioStation() { // переключаем на 1 станцию назад
-        if (currentRadioStation == 0) {
-            setCurrentRadioStation(9);
+    public void previousRadioStation() {
+        if (this.currentRadioStation == this.getFirstRadioStation()) {
+            this.setCurrentRadioStation(this.getLastRadioStation());
         } else {
-            currentRadioStation--;
+            --this.currentRadioStation;
         }
     }
 
     public void increaseVolume() {
-        if (currentVolume >= 100) {
-            setCurrentVolume(100);
+        if (this.currentVolume >= this.getMaxVolume()) {
+            this.setCurrentVolume(this.getMaxVolume());
         } else {
-            currentVolume++;
+            ++this.currentVolume;
         }
     }
 
     public void lowerVolume() {
-        if (currentVolume <= 0) {
-            setCurrentVolume(0);
+        if (this.currentVolume <= this.getMinVolume()) {
+            this.setCurrentVolume(this.getMinVolume());
         } else {
-            currentVolume--;
+            --this.currentVolume;
         }
+    }
+
+    public Radio(int totalRadioStations) {
+        this.totalRadioStations = totalRadioStations;
+        this.lastRadioStation = getTotalRadioStations() - 1;
     }
 }
